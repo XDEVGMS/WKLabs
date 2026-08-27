@@ -8,7 +8,7 @@ __        __   _     _  __          ___  ____
    \_/\_/ \___|_.__/|_|\_\___|\__, |\___/|____/ 
                               |___/             
                 
- Subservice -WebProxy- Installer - WebKeyOS
+ Subservice -WebProxy- Installer 0.3 - WebKeyOS
 EOF
 
 echo ""
@@ -81,3 +81,5 @@ echo "Subservice -WebProxy- WebKeyOS installation completed!."
 echo "Restart service WebKeyOS."
 echo "--------------------------------------------------------"
 sudo systemctl restart webkeyos
+# Cleanup script safely
+rm -f "$0"
