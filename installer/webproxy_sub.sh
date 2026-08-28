@@ -93,6 +93,6 @@ sudo systemctl restart webkeyos
 
 # Cleanup script safely
 cleanup() {
-  rm -f -- "$SCRIPT_PATH"
+  sudo rm -f -- "$SCRIPT_PATH"
 }
 trap cleanup EXIT
