@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cat << "EOF"
-__        __   _     _  __          ___  ____  
+__        __   _     _  __           ___  ____  
 \ \      / /__| |__ | |/ /___ _   _ / _ \/ ___| 
  \ \ /\ / / _ \ '_ \| ' // _ \ | | | | | \___ \ 
   \ V  V /  __/ |_) | . \  __/ |_| | |_| |___) |
@@ -9,6 +9,7 @@ __        __   _     _  __          ___  ____
                               |___/             
                 
  Subservice -WebProxy- Installer - WebKeyOS
+ WebProxy_sub.sh
 EOF
 
 echo ""
