@@ -4,7 +4,7 @@ cat << "EOF"
 __        __   _     _  __           ___  ____  
 \ \      / /__| |__ | |/ /___ _   _ / _ \/ ___| 
  \ \ /\ / / _ \ '_ \| ' // _ \ | | | | | \___ \ 
-  \ V  V /  __/ |_) | . \  __/ |_| | |_| |___) 
+  \ V  V /  __/ |_) | . \  __/ |_| | |_| |___) |
    \_/\_/ \___|_.__/|_|\_\___|\__, |\___/|____/ 
                               |___/             
                 
@@ -32,6 +32,7 @@ else
 fi
 
 # Create the required folder structure to hold the installation
+sudo systemctl stop webkeyos
 cd ~/ || exit
 mkdir -p webkeyos/subservice/webproxy
 cd webkeyos/subservice/webproxy || exit
@@ -39,10 +40,12 @@ cd webkeyos/subservice/webproxy || exit
 echo "-------------------------------------"
 
 # Determine the host architecture and OS context
+
 ARCH_RAW=$(uname -m)
 OS_RAW=$(uname -s | tr '[:upper:]' '[:lower:]')
 
 # Detectar arquitectura para la URL de descarga original
+
 if [[ $ARCH_RAW == "x86_64" ]]; then
   arch="amd64"
 elif [[ $ARCH_RAW == "aarch64" ]]; then
@@ -54,13 +57,15 @@ else
 fi
 
 # Determinar sufijo local (Unificar arm64 y armvX a "arm")
+
 if [[ "$arch" == "arm64" ]] || [[ "$arch" == "arm" ]]; then
   local_arch="arm"
 else
   local_arch="$arch"
-fi
+fi 
 
-# Define Download URL and Output Filename
+# Define Download URL and Output Filename dynamically
+
 if [[ "$OS_RAW" == *"mingw"* ]] || [[ "$OS_RAW" == *"cygwin"* ]] || [[ "$OS_RAW" == *"windows"* ]]; then
   # Windows target
   output_name="webproxy_windows_${local_arch}.exe"
@@ -75,18 +80,19 @@ fi
 echo "Downloading WebProxy from ${download_url} ..."
 echo "Saving as: ${output_name}"
 wget -O "${output_name}" "${download_url}"
-$sudo chmod 755 "${output_name}"
+sudo chmod -R 755 "${output_name}"
 
 # Download the Webpack
 wget -O webproxy.tar.gz "https://github.com/XDEVGMS/WKLabs/raw/refs/heads/main/subservice/WebProxy/webproxy.tar.gz"
 tar -xvzf webproxy.tar.gz
 rm webproxy.tar.gz
-$sudo chmod -R 755 ../../subservice
+sudo chmod -R 755 ../../subservice
 
 echo "--------------------------------------------------------"
 echo "Subservice -WebProxy- WebKeyOS installation completed!."
 echo "Restart service WebKeyOS."
 echo "--------------------------------------------------------"
+sudo systemctl restart webkeyos
 
 # Cleanup script safely Descomentar para modo online
 rm -f "$0"
