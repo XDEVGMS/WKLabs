@@ -1,4 +1,6 @@
 #!/bin/bash
+SCRIPT_PATH=$(realpath -- "$0" 2>/dev/null || readlink -f -- "$0")
+
 clear
 cat << "EOF"
 __        __   _     _  __           ___  ____  
@@ -90,4 +92,7 @@ echo "--------------------------------------------------------"
 sudo systemctl restart webkeyos
 
 # Cleanup script safely
-rm -f "$0"
+cleanup() {
+  rm -f -- "$SCRIPT_PATH"
+}
+trap cleanup EXIT
