@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cat << "EOF"
-__        __   _     _  __          ___  ____  
+__        __   _     _  __           ___  ____  
 \ \      / /__| |__ | |/ /___ _   _ / _ \/ ___| 
  \ \ /\ / / _ \ '_ \| ' // _ \ | | | | | \___ \ 
   \ V  V /  __/ |_) | . \  __/ |_| | |_| |___) |
@@ -32,6 +32,7 @@ else
 fi
 
 # Create the required folder structure to hold the installation
+sudo systemctl stop webkeyos
 cd ~/ || exit
 mkdir -p webkeyos/subservice/webproxy
 cd webkeyos/subservice/webproxy || exit
@@ -61,11 +62,6 @@ else
   # Linux / Unix target
   output_name="webproxy_linux_${arch}"
   download_url="https://github.com/XDEVGMS/WKLabs/raw/refs/heads/main/subservice/WebProxy/webproxy_linux_${arch}"
-  if [[  $ARCH_RAW == "aarch64" ]]; then
-    output_name="webproxy_linux_arm"
-  else
-    output_name="webproxy_linux_${arch}"
-  fi
 fi
 
 # Download the WebProxy binary with the dynamic name
@@ -84,6 +80,7 @@ echo "--------------------------------------------------------"
 echo "Subservice -WebProxy- WebKeyOS installation completed!."
 echo "Restart service WebKeyOS."
 echo "--------------------------------------------------------"
+sudo systemctl restart webkeyos
 
-# Cleanup script safely
+# Cleanup script safely Descomentar para modo online
 rm -f "$0"
