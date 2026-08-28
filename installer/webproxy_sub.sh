@@ -34,8 +34,10 @@ fi
 # Create the required folder structure to hold the installation
 sudo systemctl stop webkeyos
 cd ~/ || exit
+sudo chmod 777 webkeyos/subservice
 mkdir -p webkeyos/subservice/webproxy
 chmod 777 webkeyos/subservice/webproxy
+
 cd webkeyos/subservice/webproxy || exit
 
 echo "-------------------------------------"
