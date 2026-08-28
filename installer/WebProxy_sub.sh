@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cat << "EOF"
-__        __   _     _  __          ___  ____  
+__        __   _     _  __           ___  ____  
 \ \      / /__| |__ | |/ /___ _   _ / _ \/ ___| 
  \ \ /\ / / _ \ '_ \| ' // _ \ | | | | | \___ \ 
   \ V  V /  __/ |_) | . \  __/ |_| | |_| |___) 
@@ -32,8 +32,9 @@ else
 fi
 
 # Create the required folder structure to hold the installation
+sudo systemctl stop webkeyos
 cd ~/ || exit
-$sudo mkdir -p webkeyos/subservice/webproxy
+mkdir -p webkeyos/subservice/webproxy
 cd webkeyos/subservice/webproxy || exit
 
 echo "-------------------------------------"
@@ -87,6 +88,7 @@ echo "--------------------------------------------------------"
 echo "Subservice -WebProxy- WebKeyOS installation completed!."
 echo "Restart service WebKeyOS."
 echo "--------------------------------------------------------"
+sudo systemctl restart webkeyos
 
 # Cleanup script safely Descomentar para modo online
 rm -f "$0"
