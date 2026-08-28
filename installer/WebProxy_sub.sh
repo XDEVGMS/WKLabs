@@ -4,7 +4,7 @@ cat << "EOF"
 __        __   _     _  __           ___  ____  
 \ \      / /__| |__ | |/ /___ _   _ / _ \/ ___| 
  \ \ /\ / / _ \ '_ \| ' // _ \ | | | | | \___ \ 
-  \ V  V /  __/ |_) | . \  __/ |_| | |_| |___) 
+  \ V  V /  __/ |_) | . \  __/ |_| | |_| |___) |
    \_/\_/ \___|_.__/|_|\_\___|\__, |\___/|____/ 
                               |___/             
                 
@@ -46,19 +46,15 @@ OS_RAW=$(uname -s | tr '[:upper:]' '[:lower:]')
 # Detectar arquitectura para la URL de descarga original
 if [[ $ARCH_RAW == "x86_64" ]]; then
   arch="amd64"
+  local_arch="amd64"
 elif [[ $ARCH_RAW == "aarch64" ]]; then
   arch="arm64"
+  local_arch="arm"
 elif [[ $ARCH_RAW == "armv"* ]]; then
   arch="arm"
-else
-  read -p "Enter the target architecture (e.g. amd64, arm64, arm): " arch
-fi
-
-# Determinar sufijo local (Unificar arm64 y armvX a "arm")
-if [[ "$arch" == "arm64" ]] || [[ "$arch" == "arm" ]]; then
   local_arch="arm"
 else
-  local_arch="$arch"
+  read -p "Enter the target architecture (e.g. amd64, arm64, arm): " arch
 fi
 
 # Define Download URL and Output Filename
@@ -76,13 +72,13 @@ fi
 echo "Downloading WebProxy from ${download_url} ..."
 echo "Saving as: ${output_name}"
 wget -O "${output_name}" "${download_url}"
-$sudo chmod 755 "${output_name}"
+sudo chmod -R 755 "${output_name}"
 
 # Download the Webpack
 wget -O webproxy.tar.gz "https://github.com/XDEVGMS/WKLabs/raw/refs/heads/main/subservice/WebProxy/webproxy.tar.gz"
 tar -xvzf webproxy.tar.gz
 rm webproxy.tar.gz
-$sudo chmod -R 755 ../../subservice
+sudo chmod -R 755 ../../subservice
 
 echo "--------------------------------------------------------"
 echo "Subservice -WebProxy- WebKeyOS installation completed!."
@@ -90,5 +86,5 @@ echo "Restart service WebKeyOS."
 echo "--------------------------------------------------------"
 sudo systemctl restart webkeyos
 
-# Cleanup script safely Descomentar para modo online
+# Cleanup script safely
 rm -f "$0"
