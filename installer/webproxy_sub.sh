@@ -35,6 +35,7 @@ fi
 sudo systemctl stop webkeyos
 cd ~/ || exit
 mkdir -p webkeyos/subservice/webproxy
+chmod 777 webkeyos/subservice/webproxy
 cd webkeyos/subservice/webproxy || exit
 
 echo "-------------------------------------"
@@ -46,13 +47,13 @@ OS_RAW=$(uname -s | tr '[:upper:]' '[:lower:]')
 # Detectar arquitectura para la URL de descarga original
 if [[ $ARCH_RAW == "x86_64" ]]; then
   arch="amd64"
-  local_arch="amd64"
+  target="amd64"
 elif [[ $ARCH_RAW == "aarch64" ]]; then
   arch="arm64"
-  local_arch="arm"
+  target="arm"
 elif [[ $ARCH_RAW == "armv"* ]]; then
   arch="arm"
-  local_arch="arm"
+  target="arm"
 else
   read -p "Enter the target architecture (e.g. amd64, arm64, arm): " arch
 fi
@@ -60,11 +61,11 @@ fi
 # Define Download URL and Output Filename
 if [[ "$OS_RAW" == *"mingw"* ]] || [[ "$OS_RAW" == *"cygwin"* ]] || [[ "$OS_RAW" == *"windows"* ]]; then
   # Windows target
-  output_name="webproxy_windows_${local_arch}.exe"
+  output_name="webproxy.exe"
   download_url="https://github.com/XDEVGMS/WKLabs/raw/refs/heads/main/subservice/WebProxy/webproxy_windows_${arch}.exe"
 else
   # Linux / Unix target
-  output_name="webproxy_linux_${local_arch}"
+  output_name="webproxy_linux_${target}"
   download_url="https://github.com/XDEVGMS/WKLabs/raw/refs/heads/main/subservice/WebProxy/webproxy_linux_${arch}"
 fi
 
