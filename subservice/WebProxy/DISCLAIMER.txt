@@ -1,0 +1,32 @@
+ENG.
+This automated installer bash script is provided "AS IS" without warranty of any kind, 
+either expressed or implied, including, but not limited to, the implied warranties of 
+merchantability and fitness for a particular purpose. The entire risk as to the quality 
+and performance of the automated installer bash script is with you. Should the automated 
+installer bash script prove defective, you assume the cost of all necessary servicing, 
+repair, or correction.
+
+Please note that the automated installer bash script may make changes to your system 
+configuration, install new software packages or updates, and modify existing settings. 
+The user is responsible for ensuring that their system is backed up and that all important
+ data is saved prior to running the script. The user is solely responsible for any 
+consequences resulting from the use of this script.
+
+By using this automated installer bash script, you acknowledge that you have read this 
+disclaimer and agree to be bound by its terms and conditions.
+
+
+ES.
+Este script de instalación automática de Bash se proporciona "TAL CUAL",
+sin garantía de ningún tipo, ni expresa ni implícita, incluyendo, entre otras,
+las garantías implícitas de comerciabilidad e idoneidad para un propósito particular.
+Usted asume la totalidad del riesgo en cuanto a la calidad y el rendimiento del script de instalación automática de Bash.
+Si el script resultara defectuoso, usted asumirá el costo de cualquier servicio, reparación o corrección necesarios.
+
+Tenga en cuenta que el script de instalación automática de Bash puede modificar la configuración de su sistema,
+instalar nuevos paquetes de software o actualizaciones y modificar la configuración existente.
+El usuario es responsable de asegurarse de que su sistema esté respaldado y de que todos los datos importantes se guarden antes de ejecutar el script.
+El usuario es el único responsable de cualquier consecuencia derivada del uso de este script.
+
+Al utilizar este script de instalación automática de Bash,
+usted reconoce haber leído este descargo de responsabilidad y acepta estar sujeto a sus términos y condiciones.
