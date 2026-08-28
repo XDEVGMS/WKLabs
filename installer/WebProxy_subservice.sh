@@ -8,7 +8,7 @@ __        __   _     _  __          ___  ____
    \_/\_/ \___|_.__/|_|\_\___|\__, |\___/|____/ 
                               |___/             
                 
- Subservice -WebProxy- Installer 0.3 - WebKeyOS
+ Subservice -WebProxy- Installer - WebKeyOS
 EOF
 
 echo ""
@@ -32,7 +32,6 @@ else
 fi
 
 # Create the required folder structure to hold the installation
-sudo systemctl stop webkeyos
 cd ~/ || exit
 mkdir -p webkeyos/subservice/webproxy
 cd webkeyos/subservice/webproxy || exit
@@ -62,6 +61,11 @@ else
   # Linux / Unix target
   output_name="webproxy_linux_${arch}"
   download_url="https://github.com/XDEVGMS/WKLabs/raw/refs/heads/main/subservice/WebProxy/webproxy_linux_${arch}"
+  if [[  $ARCH_RAW == "aarch64" ]]; then
+    output_name="webproxy_linux_arm"
+  else
+    output_name="webproxy_linux_${arch}"
+  fi
 fi
 
 # Download the WebProxy binary with the dynamic name
@@ -80,6 +84,6 @@ echo "--------------------------------------------------------"
 echo "Subservice -WebProxy- WebKeyOS installation completed!."
 echo "Restart service WebKeyOS."
 echo "--------------------------------------------------------"
-sudo systemctl restart webkeyos
+
 # Cleanup script safely
 rm -f "$0"
