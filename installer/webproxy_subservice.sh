@@ -82,5 +82,5 @@ echo "Restart service WebKeyOS."
 echo "--------------------------------------------------------"
 sudo systemctl restart webkeyos
 
-# Cleanup script safely Descomentar para modo online
+# Cleanup script safely
 rm -f "$0"
